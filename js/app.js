@@ -20,12 +20,11 @@ const usersRef = dbRef.child('Products');
 
 
 	readUserData(); 
-	
-
 
 function readUserData() {
 
 	const items = document.getElementById("items");
+
 
 	var imgCount = 1;
 
@@ -37,7 +36,7 @@ function readUserData() {
 			var div = document.createElement("div");
 			div.className = "single-products-catagory clearfix";
 
-			var a = document.createElement("a");
+			var a = document.createElement("a"); 
 			a.href = "shop.html";
 
 			var img = document.createElement("img");
