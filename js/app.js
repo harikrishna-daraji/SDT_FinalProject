@@ -17,16 +17,16 @@ firebase.initializeApp(config);
 // Firebase Database Reference and the child
 const dbRef = firebase.database().ref();
 const usersRef = dbRef.child('Products');
+const items = document.getElementById("items");
 
 
 	readUserData(); 
 
 function readUserData() {
 
-	const items = document.getElementById("items");
-
 
 	var imgCount = 1;
+	var ai=1;
 
 	usersRef.on("value",snap=>{
 		snap.forEach(childSnap=>{
@@ -37,10 +37,14 @@ function readUserData() {
 			div.className = "single-products-catagory clearfix";
 
 			var a = document.createElement("a"); 
-			a.href = "shop.html";
+			a.setAttribute("id","aid"+ai);
+			//a.href = "shop.html";
+			a.addEventListener("click", shopping_page);
+
 
 			var img = document.createElement("img");
 			img.src = "img/bg-img/"+imgCount+".jpg";
+			img.setAttribute("id","img-id"+imgCount);
 			img.alt = "";
 
 			var hoverDiv = document.createElement("div");
@@ -60,33 +64,29 @@ function readUserData() {
 			hoverDiv.append(p);
 			hoverDiv.append(h4);
 
-			a.append(img);
+			a.append(img); 
+			
 			a.append(hoverDiv);
 
 			div.append(a);
-
 			items.append(div); 
 			imgCount++;   
+			ai++;
 
 		});
 	})
 }
+function shopping_page(ai){
 
-
-/*
-	 code to be embedded
+	a = window.location.href="file:///C:/Users/vsn%20pooja/Documents/GitHub/SDT_FinalProject/shop.html";
 	
-<div class="single-products-catagory clearfix">
-    <a href="shop.html">
-        <img src="img/bg-img/9.jpg" alt="">
-                        
-            <div class="hover-content">
-                <div class="line"></div>
-                <p>From $318</p>
-                <h4>Home Deco</h4>
-            </div>
-    </a>
-</div>
+	//var item-image = document.createElement("a"); 
+	//	item-image.setAttribute("href","img-id"+imgCount);
+}
+
+function Display(){
+	var cart=document.getElementById("button-submit").innerHTML="ADDED";
+	//window.location.href="file:///C:/Users/vsn%20pooja/Documents/GitHub/SDT_FinalProject/cart.html";
+}
 
 
-*/

@@ -80,8 +80,8 @@
             </div>
             <!-- Social Button -->
             <div class="social-info d-flex justify-content-between">
-                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com/accounts/login/?hl=en"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="https://www.facebook.com/login/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
             </div>
         </header>
         <!-- Header Area End -->
@@ -114,8 +114,8 @@
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <a class="gallery_img" href="img/product-img/pro-big-1.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-1.jpg" alt="First slide">
+                                        <a class="gallery_img" id="gallery-item" href="img/product-img/pro-big-1.jpg">
+                                            <img class="d-block w-100" id ="display-img" src="img/product-img/pro-big-1.jpg" alt="First slide">
                                         </a>
                                     </div>
                                 </div>
@@ -127,8 +127,8 @@
                             <!-- Product Meta Data -->
                             <div class="product-meta-data">
                                 <div class="line"></div>
-                                <p class="product-price">$180</p>
-                                <a href="product-details.html">
+                                <p class="product-price" id="product-prices">$180</p>
+                                <a href="file:///C:/Users/vsn%20pooja/Documents/GitHub/SDT_FinalProject/shop.html">
                                     <h6>White Modern Chair</h6>
                                 </a>
                                 <!-- Ratings & Review -->
@@ -160,7 +160,7 @@
                                         <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
                                     </div>
                                 </div>
-                                <button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
+                                <button type="submit" name="addtocart" value="5" id="button-submit" onclick="Display()"class="btn amado-btn">Add to cart</button>
                             </form>
 
                         </div>
@@ -249,7 +249,7 @@
     <!-- Active js -->
     <script src="js/active.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-    <script type="text/javascript" src="js/shopping.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </body>
 
 </html>
