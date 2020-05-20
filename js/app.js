@@ -20,7 +20,8 @@ const usersRef = dbRef.child('Products');
 const items = document.getElementById("items");
 
 
-	readUserData(); 	
+
+	readUserData(); 
 
 function readUserData() {
 	var imgCount = 1;
@@ -70,36 +71,53 @@ function readUserData() {
 	})
 }
 
-function setSelectedProductData() {
-
-}
-
 function readDataOfSelectedProduct(e) {
 	console.log("function called "+e.target.getAttribute("class"));
 	const productRef = dbRef.child('Products/'+e.target.getAttribute("class"));
 
+	var name = document.getElementById("name");
+	var price = document.getElementById("price");
+	var descrription = document.getElementById("description");
 
 	productRef.on("value",snap=>{
 		console.log("Entered in Snap");
 		snap.forEach(childSnap => {
 			console.log(childSnap.key+"-"+childSnap.val());
-			localStorage.setItem(childSnap.key,childSnap.val());
+			//name.innerHTML = name;
+			//price.innerHTML = price;
+			//description.innerHTML = description;
 		}); 
-
+	});
+}
+const addbutton=document.getElementById("button-submit");
+addbutton.addEventListener("click",added);
+function added(a){
+let productNumbers=localStorage.getItem('cartNumbers')
+console.log(productNumbers);
+console.log(typeof productNumbers);
+localStorage.setItem('cartNumbers',1);
+const productRef = dbRef.child('Products/'+a.target.getAttribute("class"));
+productRef.on("value",snap=>{
+		console.log("Entered in Snap");
+		snap.forEach(childSnap => {
+			console.log(childSnap.key+"-"+childSnap.val());
+});
 	});
 }
 
-/*function shopping_page(ai){
 
-	a = window.location.href="file:///C:/Users/vsn%20pooja/Documents/GitHub/SDT_FinalProject/shop.html";
-	
-	//var item-image = document.createElement("a"); 
-	//	item-image.setAttribute("href","img-id"+imgCount);
-}
+
+/*function cartNumbers(){
+
+	productNumbers=parseInt(productNumbers);
+	if(productNumbers){localStorage.setItem('readDataOfSelectedProduct',productNumbers+1);}
+	else {localStorage.setItem('readDataOfSelectedProduct',1);}
+	return false;
+}*/
 
 function Display(){
-	var cart=document.getElementById("button-submit").innerHTML="ADDED";
-	//window.location.href="file:///C:/Users/vsn%20pooja/Documents/GitHub/SDT_FinalProject/cart.html";
-}   */
+	//var cart=document.getElementById("button-submit").innerHTML="ADDED";
+	//cart.href="cart.html";
+}   
 
 
