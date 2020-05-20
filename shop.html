@@ -75,7 +75,7 @@
             <br />
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="cart.html" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
+                <a href="cart.html" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span id="cart-value">(0)</span></a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
             </div>
             <!-- Social Button -->
@@ -94,7 +94,7 @@
                     <div class="col-12">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mt-50">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">Furniture</a></li>
                                 <li class="breadcrumb-item"><a href="#">Chairs</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">white modern chair</li>
@@ -127,9 +127,9 @@
                             <!-- Product Meta Data -->
                             <div class="product-meta-data">
                                 <div class="line"></div>
-                                <p class="product-price" id="price"></p>
-                                <a href="file:///C:/Users/vsn%20pooja/Documents/GitHub/SDT_FinalProject/shop.html">
-                                    <h6 id="name">White Modern Chair</h6>
+                                <p class="product-price" id="product-prices">$180</p>
+                                <a href="shop.html">
+                                    <h6>White Modern Chair</h6>
                                 </a>
                                 <!-- Ratings & Review -->
                                 <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
@@ -157,7 +157,7 @@
                                     <div class="quantity">
                                         <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
                                         <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
-                                        <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+                                        <span class="qty-plus" id="quantity-value" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
                                     </div>
                                 </div>
                                 <button type="submit" name="addtocart" value="5" id="button-submit" onclick="Display()"class="btn amado-btn">Add to cart</button>
