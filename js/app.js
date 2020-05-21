@@ -20,7 +20,7 @@ const usersRef = dbRef.child('Products');
 const items = document.getElementById("items");
 
 
-	readUserData(); 
+	readUserData(); 	
 
 function readUserData() {
 	var imgCount = 1;
@@ -34,7 +34,7 @@ function readUserData() {
 			div.className = "single-products-catagory clearfix";
 
 			var a = document.createElement("a");
-			//a.href = "shop.html";
+			a.href = "shop.html";
 			a.setAttribute("class", key);
 			a.addEventListener("click",readDataOfSelectedProduct);
 
@@ -70,23 +70,20 @@ function readUserData() {
 	})
 }
 
+function setSelectedProductData() {
+
+}
+
 function readDataOfSelectedProduct(e) {
 	console.log("function called "+e.target.getAttribute("class"));
 	const productRef = dbRef.child('Products/'+e.target.getAttribute("class"));
 
-	var name = document.getElementById("name");
-	var price = document.getElementById("price");
-	var descrription = document.getElementById("description");
 
 	productRef.on("value",snap=>{
 		console.log("Entered in Snap");
 		snap.forEach(childSnap => {
 			console.log(childSnap.key+"-"+childSnap.val());
-			
-
-			//name.innerHTML = name;
-			//price.innerHTML = price;
-			//description.innerHTML = description;
+			localStorage.setItem(childSnap.key,childSnap.val());
 		}); 
 
 	});
