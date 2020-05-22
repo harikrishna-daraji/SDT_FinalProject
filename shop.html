@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="css/core-style.css">
     <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/snackbar.css">
 </head>
 
 <body>
@@ -65,7 +66,6 @@
             <nav class="amado-nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="cart.html">Cart</a></li>
                     <li><a href="checkout.html">Checkout</a></li>
                 </ul>
             </nav>
@@ -74,7 +74,7 @@
             <br />
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="cart.html" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span id="cart-value">(0)</span></a>
+                <a href="cart.html" id="cart-size" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span id="cart-value"></span></a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
             </div>
             <!-- Social Button -->
@@ -106,7 +106,7 @@
                     <div class="col-12 col-lg-7">
                         <div class="single_product_thumb">
                             <div id="product_details_slider" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
+                                <ol class="carousel-indicators" id="carousel-indicators">
                                     <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/product-img/pro-big-1.jpg);">
                                     </li>
                                    
@@ -130,17 +130,6 @@
                                 <a href="shop.html">
                                     <h6 id="name"></h6>
                                 </a>
-                                <!-- Ratings & Review -->
-                                <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    
-                                </div>
                                 <!-- Avaiable -->
                                 <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
                             </div>
@@ -148,20 +137,7 @@
                             <div class="short_overview my-5" >
                                 <p id="description"></p>
                             </div>
-
-                            <!-- Add to Cart Form -->
-                            <form class="cart clearfix" method="post">
-                                <div class="cart-btn d-flex mb-50">
-                                    <p>Qty</p>
-                                    <div class="quantity">
-                                        <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
-                                        <span class="qty-plus" id="quantity-value" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-                                    </div>
-                                </div>
-                                <button type="submit" name="addtocart" value="5" id="button-submit" onclick="Display()"class="btn amado-btn">Add to cart</button>
-                            </form>
-
+                            <button type="submit" name="addtocart" value="5" id="button-submit" class="btn amado-btn" >Add to cart</button>
                         </div>
                     </div>
                 </div>
@@ -237,7 +213,7 @@
         </div>
     </footer>
     <!-- ##### Footer Area End ##### -->
-
+<div id="snackbar">Item added to cart</div>
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
     <script src="js/popper.min.js"></script>
@@ -247,20 +223,84 @@
     <script src="js/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+       
     <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
    <!-- <script type="text/javascript" src="js/app.js"></script>  -->
 
     <script type="text/javascript">
+       
         window.onload = function() {
             console.log("Shop script called: "+localStorage.getItem("name"));
             var name = document.getElementById("name");
             var price = document.getElementById("product-prices");
             var description = document.getElementById("description");
+var img = document.getElementById("display-img")
+var sliderImg = document.getElementById("carousel-indicators").firstElementChild
 
              name.innerHTML = localStorage.getItem("name");
-             price.innerHTML = localStorage.getItem("price");
+             price.innerHTML = localStorage.getItem("price")+"$";
             description.innerHTML = localStorage.getItem("description");
+img.src = localStorage.getItem("imgUrl");
+sliderImg.style = "background-image: url("+localStorage.getItem("imgUrl")+");"
+const cartSize = localStorage.getItem("cartSize") || 0
+const cart = document.getElementById("cart-size")
+cart.innerHTML = "<img src='img/core-img/cart.png' alt=''> Cart <span>("+cartSize+")</span>"
         }
+        var button=document.getElementById("button-submit").addEventListener("click", add);
+        function add(){
+            let productNumbers=localStorage.getItem("price")
+            let q=localStorage.getItem("quantity")
+            let products = localStorage.getItem("cartItems");
+            var cartSize = 0
+            if (!products || products === null) {
+            var product = [
+            {
+            name : localStorage.getItem("name"),
+            price : localStorage.getItem("price"),
+            imgUrl : localStorage.getItem("imgUrl"),
+            quantity : 1
+            }
+        ]
+        localStorage.setItem("totalPrice",product[0].price)
+        localStorage.setItem("cartItems", JSON.stringify(product))
+
+localStorage.setItem("cartSize", 1)
+cartSize = 1
+
+} else {
+        products = JSON.parse(products);
+        let pExists = false
+        var product = {
+        name : localStorage.getItem("name"),
+        price : localStorage.getItem("price"),
+        imgUrl : localStorage.getItem("imgUrl"),
+        quantity : 1
+        }
+    for (var i = 0; i<products.length; i++) {
+    if (products[i].name === product.name) {
+    products[i].quantity += 1
+    pExists = true
+    break
+    }
+}
+if (!pExists) {
+    products.push(product);
+}
+var total = localStorage.getItem("totalPrice")
+localStorage.setItem("totalPrice", parseInt(total) + parseInt(product.price))
+
+localStorage.setItem("cartSize", products.length)
+localStorage.setItem("cartItems", JSON.stringify(products))
+cartSize = products.length
+
+}
+            const cart = document.getElementById("cart-size")
+            cart.innerHTML = "<img src='img/core-img/cart.png' alt=''> Cart <span>("+cartSize+")</span>"
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            }
+
     </script>
 
 </body>

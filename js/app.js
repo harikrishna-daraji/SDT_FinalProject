@@ -41,6 +41,7 @@ function readUserData() {
 			var img = document.createElement("img");
 			img.src = "img/bg-img/"+imgCount+".jpg";
 			img.alt = "";
+			a.setAttribute("imageUrl", img.src);
 
 			var hoverDiv = document.createElement("div");
 			hoverDiv.className = "hover-content";
@@ -70,10 +71,6 @@ function readUserData() {
 	})
 }
 
-function setSelectedProductData() {
-
-}
-
 function readDataOfSelectedProduct(e) {
 	console.log("function called "+e.target.getAttribute("class"));
 	const productRef = dbRef.child('Products/'+e.target.getAttribute("class"));
@@ -87,14 +84,24 @@ function readDataOfSelectedProduct(e) {
 		}); 
 
 	});
+	console.log("image url is " + e.target.getAttribute("imageUrl"));
+	localStorage.setItem("imgUrl",e.target.getAttribute("imageUrl"));
 }
+
 
 /*function shopping_page(ai){
 
-	a = window.location.href="file:///C:/Users/vsn%20pooja/Documents/GitHub/SDT_FinalProject/shop.html";
-	
-	//var item-image = document.createElement("a"); 
-	//	item-image.setAttribute("href","img-id"+imgCount);
+	let productNumbers=localStorage.setItem('cartNumbers')
+	console.log(productNumbers);
+	console.log(typeof productNumbers);
+	localStorage.setItem('cartNumbers',1);
+	const productRef = dbRef.child('Products/'+a.target.getAttribute("class"));
+	productRef.on("value",snap=>{
+			console.log("Entered in Snap");
+			snap.forEach(childSnap => {
+				console.log(childSnap.key+"-"+childSnap.val());
+	});
+		});
 }
 
 function Display(){
