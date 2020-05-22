@@ -44,5 +44,17 @@
     "price": 30,
     "quantity":"11",
     "description":"This is simple chair with modern design and looks to make your home look more stylist. It has different colors and pattern to suit your needs."
+  }],
+  "Customers":[{
+    "firstName":"",
+    "lastName":"",
+    "company":"",
+    "email":"",
+    "country":"",
+    "address":"",
+    "town":"",
+    "zipcode":"",
+    "phoneNumber":"",
+    "comment":""
   }]
 }
