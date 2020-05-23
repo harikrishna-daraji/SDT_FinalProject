@@ -75,7 +75,7 @@
             <br />
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="cart.html" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span id="cartcounting"></span></a>
+                
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
             </div>
             <!-- Social Button -->
@@ -160,13 +160,8 @@
                                 <li><span>delivery:</span> <span>Free</span></li>
                                 <li><span>total:</span> <span>$140.00</span></li>
                             </ul>
-
+                            <br>   
                             <div class="payment-method">
-                                <!-- Cash on delivery -->
-                                <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="checkbox" class="custom-control-input" id="cod" checked>
-                                    <label class="custom-control-label" for="cod">Cash on Delivery</label>
-                                </div>
                                 <!-- Paypal -->
                                 <div class="custom-control custom-checkbox mr-sm-2">
                                     <input type="checkbox" class="custom-control-input" id="paypal">
@@ -174,8 +169,7 @@
                                 </div>
                             </div>
 
-                            <div class="cart-btn mt-100">
-                                <a href="#" class="btn amado-btn w-100" onclick="saveCheckoutDetails()">Checkout</a>
+                            <div class="cart-btn mt-100" id="cart-btn mt-100">
                             </div>
                         </div>
                     </div>
@@ -348,7 +342,8 @@ function addGooglePayButton() {
   const paymentsClient = getGooglePaymentsClient();
   const button =
       paymentsClient.createButton({onClick: onGooglePaymentButtonClicked});
-  document.getElementById('container').appendChild(button);
+      
+  document.getElementById('cart-btn mt-100').appendChild(button);
 }
 
 /**
@@ -387,6 +382,49 @@ function prefetchGooglePaymentData() {
  * Show Google Pay payment sheet when Google Pay payment button is clicked
  */
 function onGooglePaymentButtonClicked() {
+
+  var firstName = document.getElementById("first_name").value;
+    var lastName = document.getElementById("last_name").value;
+    var company = document.getElementById("company").value;
+    var email = document.getElementById("email").value;
+    var country = document.getElementById("country").value;
+    var address = document.getElementById("street_address").value;
+    var town = document.getElementById("city").value;
+    var zipCode = document.getElementById("zipCode").value;
+    var phone_number = document.getElementById("phone_number").value;
+    var comment = document.getElementById("comment").value;
+
+    console.log(firstName,lastName,company,email,country,address,town,zipCode,phone_number,comment);
+
+    const customerRef = dbRef.child('Customers');
+    document.getElementById("city").value = "";
+
+    var newCustomer = {};
+
+    newCustomer["firstName"] = firstName;
+    newCustomer["lastName"] = lastName;
+    newCustomer["company"] = company;
+    newCustomer["email"] = email;
+    newCustomer["country"] = country;
+    newCustomer["address"] = address;
+    newCustomer["town"] = town;
+    newCustomer["zipCode"] = zipCode;
+    newCustomer["phone_number"] = phone_number;
+    newCustomer["comment"] = comment;
+
+    customerRef.push(newCustomer);
+
+    document.getElementById("first_name").value = "";
+    document.getElementById("last_name").value = "";
+    document.getElementById("company").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("country").value = "";
+    document.getElementById("street_address").value = "";
+    document.getElementById("city").value = "";
+    document.getElementById("zipCode").value = "";
+    document.getElementById("phone_number").value = "";
+    document.getElementById("comment").value = "";
+
   const paymentDataRequest = getGooglePaymentDataRequest();
   paymentDataRequest.transactionInfo = getGoogleTransactionInfo();
 

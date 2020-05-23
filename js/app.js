@@ -92,55 +92,6 @@ function readDataOfSelectedProduct(e) {
 	localStorage.setItem("imgUrl",e.target.getAttribute("imageUrl"));
 }
 
-<<<<<<< HEAD
-function saveCheckoutDetails() {
-
-	var firstName = document.getElementById("first_name").value;
-	var lastName = document.getElementById("last_name").value;
-	var company = document.getElementById("company").value;
-	var email = document.getElementById("email").value;
-	var country = document.getElementById("country").value;
-	var address = document.getElementById("street_address").value;
-	var town = document.getElementById("city").value;
-	var zipCode = document.getElementById("zipCode").value;
-	var phone_number = document.getElementById("phone_number").value;
-	var comment = document.getElementById("comment").value;
-
-	console.log(firstName,lastName,company,email,country,address,town,zipCode,phone_number,comment);
-
-	const customerRef = dbRef.child('Customers');
-	document.getElementById("city").value = "";
-
-	var newCustomer = {};
-
-	newCustomer["firstName"] = firstName;
-	newCustomer["lastName"] = lastName;
-	newCustomer["company"] = company;
-	newCustomer["email"] = email;
-	newCustomer["country"] = country;
-	newCustomer["address"] = address;
-	newCustomer["town"] = town;
-	newCustomer["zipCode"] = zipCode;
-	newCustomer["phone_number"] = phone_number;
-	newCustomer["comment"] = comment;
-
-	customerRef.push(newCustomer);
-
-	document.getElementById("first_name").value = "";
-	document.getElementById("last_name").value = "";
-	document.getElementById("company").value = "";
-	document.getElementById("email").value = "";
-	document.getElementById("country").value = "";
-	document.getElementById("street_address").value = "";
-	document.getElementById("city").value = "";
-	document.getElementById("zipCode").value = "";
-	document.getElementById("phone_number").value = "";
-	document.getElementById("comment").value = "";
-
-}
-=======
->>>>>>> c9759a56667e9cdfb92d263740607d30ab9b2a89
-
 /*function shopping_page(ai){
 
 	let productNumbers=localStorage.setItem('cartNumbers')
