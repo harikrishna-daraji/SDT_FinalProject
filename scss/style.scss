@@ -476,7 +476,7 @@ img {
         z-index: 1;
         @include flex(0 0 320px);
         width: 320px;
-        max-width: 320px;
+        max-width: 260px;
         background-color: #fff;
         padding: 60px 75px;
         @media #{$breakpoint-md} {
