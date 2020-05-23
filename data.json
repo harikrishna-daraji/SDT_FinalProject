@@ -1,0 +1,60 @@
+{
+  "Products": [{
+    "name": "Modern Chair",
+    "price": 24,
+    "quantity":"2",
+    "description":"This is simple chair with modern design and looks to make your home look more stylist. It has different colors and pattern to suit your needs."
+  }, {
+    "name": "Minimalistic Plant Plot",
+    "price": 21,
+    "quantity":"5",
+    "description":"This plot is suitable to decorate your bathroom.There is a small hole in the bottom of the pot, so that water can flow through the soil and keep your plants healthy. The pot will make a lovely display of herbs on a kitchen windowsill or for mini cactus or succulents in the bathroom."
+  },{
+    "name": "Modern Stable Chair",
+    "price":20,
+    "quantity":"9",
+    "description":"This is simple chair with modern design and looks to make your home look more stylist. It has different colors and pattern to suit your needs."
+  },{
+    "name":"Plant Plot",
+    "price": 30,
+    "quantity":"10",
+    "description":"This plot is suitable to decorate your bathroom.There is a small hole in the bottom of the pot, so that water can flow through the soil and keep your plants healthy. The pot will make a lovely display of herbs on a kitchen windowsill or for mini cactus or succulents in the bathroom."
+  },{
+    "name": "Small Table",
+    "price": 31,
+    "quantity":"1",
+    "description":"Table with capacity to adjust with 6 persons and we have to different colors to match it with your paint design. Order it now"
+  },{
+    "name":"Night Stand",
+    "price": 21,
+    "quantity":"8",
+    "description":"This product will make you sleep better at night and will your morning more refreshable. With its shadow lighting you can make home look like theatre"
+  },{
+    "name":"Modern Rocking Chair",
+    "price": 45,
+    "quantity":"12",
+    "description":"This is simple chair with modern design and looks to make your home look more stylist. It has different colors and pattern to suit your needs."
+  },{
+    "name": "Hemo Deco",
+    "price": 21,
+    "quantity":"6",
+    "description":"This Hemo is suitable for your home design and make it look more beautiful. Order it now"
+  },{
+    "name":"Metalic Chair",
+    "price": 30,
+    "quantity":"11",
+    "description":"This is simple chair with modern design and looks to make your home look more stylist. It has different colors and pattern to suit your needs."
+  }],
+  "Customers":[{
+    "firstName":"",
+    "lastName":"",
+    "company":"",
+    "email":"",
+    "country":"",
+    "address":"",
+    "town":"",
+    "zipcode":"",
+    "phoneNumber":"",
+    "comment":""
+  }]
+}
